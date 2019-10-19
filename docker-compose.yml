@@ -11,7 +11,7 @@ networks:
 services:
 
   prometheus:
-    image: prom/prometheus:v2.1.0
+    image: prom/prometheus:v2.13.1
     volumes:
       - ./prometheus/:/etc/prometheus/
       - prometheus_data:/prometheus
@@ -41,8 +41,8 @@ services:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /:/rootfs:ro
-    command: 
-      - '--path.procfs=/host/proc' 
+    command:
+      - '--path.procfs=/host/proc'
       - '--path.sysfs=/host/sys'
       - --collector.filesystem.ignored-mount-points
       - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
@@ -55,7 +55,7 @@ services:
       mode: global
 
   alertmanager:
-    image: prom/alertmanager
+    image: prom/alertmanager:v0.19.0
     ports:
       - 9093:9093
     volumes:
@@ -71,7 +71,7 @@ services:
 #        constraints:
 #          - node.hostname == ${HOSTNAME}
   cadvisor:
-    image: google/cadvisor
+    image: google/cadvisor:v0.33.0
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
@@ -86,7 +86,7 @@ services:
       mode: global
 
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:6.4.3
     user: "104"
     depends_on:
       - prometheus
@@ -101,4 +101,3 @@ services:
       - back-tier
       - front-tier
     restart: always
-

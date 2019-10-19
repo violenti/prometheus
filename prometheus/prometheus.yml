@@ -44,7 +44,7 @@ scrape_configs:
 
     dns_sd_configs:
     - names:
-      - 'tasks.cadvisor'
+      - 'prometheus_cadvisor_1'
       type: 'A'
       port: 8080
 
@@ -58,9 +58,9 @@ scrape_configs:
 
     dns_sd_configs:
     - names:
-      - 'tasks.node-exporter'
+      - 'prometheus_node-exporter_1'
       type: 'A'
       port: 9100
-    
+
 #     static_configs:
 #          - targets: ['node-exporter:9100']
